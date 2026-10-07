@@ -8,14 +8,14 @@ Program ini dirancang untuk mencatat dan mengelola ketersediaan stok barang pada
 
 ## Deskripsi Singkat
 
-Program ini berfungsi sebagai sistem pencatatan inventaris gudang interaktif. Seluruh data barang tersimpan secara permanen dalam file berformat JSON, sehingga data yang telah diinput tidak akan hilang ketika program dihentikan dan dijalankan kembali.
+Program ini berfungsi sebagai sistem pencatatan inventaris gudang. Seluruh data barang tersimpan secara permanen dalam file berformat JSON, sehingga data yang telah diinput tidak akan hilang ketika program dihentikan dan dijalankan kembali.
 
 ---
 
 ### Import Library
 <img width="113" height="50" alt="image" src="https://github.com/user-attachments/assets/696b7499-d3ac-447d-8323-fa91e9768e20" />
 
-Paling atas ada `import json` dan `import os`. Ini wajib soalnya programnya berinteraksi langsung sama file. Module `json` dipakai buat baca dan tulis data berformat JSON, sedangkan `os` dipakai buat ngecek apakah file-nya udah ada atau belum di komputer.
+Di paling atas ada `import json` dan `import os`. Ini wajib ada karena programnya terhubung langsung sama file. Module `json` yang dipakai buat membaca dan menulis data berformat JSON, sedangkan `os` dipakai buat mengecek apakah file-nya udah ada atau belum di komputer.
 
 ---
 
@@ -23,7 +23,7 @@ Paling atas ada `import json` dan `import os`. Ini wajib soalnya programnya beri
 <img width="646" height="40" alt="image" src="https://github.com/user-attachments/assets/28dae470-7d5a-490a-9336-624156208e73" />
 
 
-Variabel `path` ini cuma variabel buat nyimpen lokasi (*path*) ke file `daftar barang.json` biar gampang diubah kalau mau. Tanda `r` di depannya (*raw string*) dipakai biar karakter backslash (`\`) gak dibaca sebagai *escape sequence*.
+Variabel `path` ini adalah variabel buat menyimpan lokasi (*path*) ke dalam file `daftar barang.json` supaya gampang diubah. Tanda `r` di depannya (*raw string*) dipakai biar karakter backslash (`\`) tidak dibaca sebagai *escape sequence*.
 Di program ini path-nya:
 `D:\TUGAS\KULIAH\Praktikum\Study Kasus 6\daftar barang.json`
 
@@ -33,19 +33,19 @@ Di program ini path-nya:
 <img width="396" height="194" alt="image" src="https://github.com/user-attachments/assets/844c9ea1-d767-42ba-9f0e-8392d7385e6e" />
 
 
-Tugasnya buka file JSON terus ubah isinya jadi *list* Python yang bisa dipakai. Kalau filenya belum pernah ada atau isinya masih kosong/rusak (`JSONDecodeError`), dia bakal balikin *list* kosong `[]` aja biar gak error pas program dijalankan.
+Tugasnya adalah membuka file JSON dan mengubah isinya menjadi *list* Python yang bisa dipakai. Kalau filenya belum pernah ada atau isinya masih kosong (`JSONDecodeError`), dia akan menampilkan *list* kosong `[]` biar tidak error saat program dijalankan.
 
-Cara kerjanya:
-1. Ngecek apakah file ada dengan `os.path.exists(path)`.
-2. Kalau ada, buka file lalu *parse* JSON pake `json.load(file)`.
-3. Kalau file kosong/rusak (`JSONDecodeError`) atau gak ada, kembalikan *list* kosong `[]`.
+Cara kerjanya adalah:
+1. Mengecek apakah file ada dengan `os.path.exists(path)`.
+2. Jika ada, buka file lalu *parse* JSON pake `json.load(file)`.
+3. Jika file kosong/rusak (`JSONDecodeError`) atau gak ada, kembalikan *list* kosong `[]`.
 
 ---
 
 ### Fungsi simpan_ke_json(daftar_barang)
 <img width="546" height="98" alt="image" src="https://github.com/user-attachments/assets/25cf8101-a255-4f96-a5bd-d54e7b65f8d1" />
 
-Kebalikannya dari `muat_data_inventaris()`. Dia menulis ulang semua data ke dalam file berformat JSON. Nah ini bagian yang bikin data gak hilang walau programnya ditutup terus dibuka lagi.
+Kebalikannya dari `muat_data_inventaris()`. Dia menulis ulang semua data ke dalam file berformat JSON. Nah ini bagian yang bikin data tidak hilang walau programnya ditutup terus dibuka lagi.
 
 Prosesnya:
 1. Buka file dengan mode write (`"w"`).
